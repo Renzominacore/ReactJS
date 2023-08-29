@@ -1,21 +1,23 @@
+import {Link, NavLink} from "react-router-dom"
 import CartWidget from "../CartWidget/CartWidget";
+
 const NavBar = () => {
     return(
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <a href="#" className="navbar-brand">SAS Clinica Medica</a>
+                <Link className="navbar-brand" to="/">SAS Clinica Medica</Link>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Estetoscopios</a>
+                        <NavLink className="nav-link" to="/category/estetoscopios">Estetoscopios</NavLink>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Tensiometros</a>
+                        <NavLink className="nav-link" to="/category/tensiometros">Tensiometros</NavLink>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Oximetros</a>
+                        <NavLink className="nav-link" to="/category/oximetros">Oximetros</NavLink>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Termometros</a>
+                        <NavLink className="nav-link" to="/category/termometros">Termometros</NavLink>    
                     </li>
                 </ul>
             </div>
