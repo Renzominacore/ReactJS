@@ -22,9 +22,10 @@ const products = [
     })
 }
 
-export const getProducts= () => {
+export const getProducts= (category) => {
     return new Promise((resolve) => {
         setTimeout(()=>{
+            
             const productsFiltered=category ? products.filter(product=>product.category==category) : products;
             resolve(productsFiltered);
         },1000)

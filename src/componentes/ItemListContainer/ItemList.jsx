@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 
 const ItemList = ({ items, isLoading }) => {
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Cargando productos...</h2>;
   }
 
   return (
     <div>
-      <h1>ItemList</h1>
+      <h1 className="text-center">Productos</h1>
 
-      <ul>
+      <ul className="text-center classPropia">
         {items.map((item) => (
-          <li key={item.id}>
-            <Link to={`/item/${item.id}`}>
-              <h3>{item.name}</h3>
-              <p>${item.price}</p>
-              <p>{item.category}</p>
+          <li className="text-decoration-none" key={item.id}>
+            <Link className="classPropia" to={`/item/${item.id}`}>
+              <h3 className="className">{item.name}</h3>
+              <p className="classPrice">${item.price}</p>
+              <p className="classCategory">{item.category}</p>
+              <hr />
             </Link>
           </li>
         ))}

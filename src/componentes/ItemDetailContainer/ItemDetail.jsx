@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 
 const ItemDetail = ({ item, isLoading }) => {
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Cargando productos</h2>;
   }
 
   if (!item) {
-    return <h2>Product not found</h2>;
+    return <h2>Pagina no encontrada</h2>;
   }
 
   return (
