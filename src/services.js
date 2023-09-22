@@ -1,33 +1,64 @@
-const products = [
-    {id:"1", name: "Littman", price: 49000, category: "estetoscopios"},
-    {id:"2", name: "Melipal", price: 20000, category:"estetoscopios"},
-    {id:"3", name:"Omron", price: 25000, category:"tensiometros"},
-    {id:"4", name:"Medisana", price: 24300, category:"tensiometros"},
-    {id:"5", name:"Yonker", price:19500, category:"oximetros"},
-    {id:"6", name:"Beurer",price:18000, category:"oximetros"},
-    {id:"7", name:"Philco",price:7300, category:"termometros"},
-    {id:"8", name:"Beurer",price:7600,category:"termometros"}
-];
+import {
+    doc,
+    getDoc,
+    collection,
+    getDocs,
+    addDoc,
+    query,
+    where,
+    getFirestore,
+  } from "firebase/firestore";
 
  export const getProduct = (id) => {
     return new Promise((resolve, reject) => {
-        setTimeout(() =>{
-            const product = products.find(p => p.id == id)
-            if (product){
-                resolve(product)
-            }else{
-                reject('No existe el producto buscado')
-            }
-        },1000)
-    })
-}
+        const db = getFirestore();
 
-export const getProducts= (category) => {
-    return new Promise((resolve) => {
-        setTimeout(()=>{
-            
-            const productsFiltered=category ? products.filter(product=>product.category==category) : products;
-            resolve(productsFiltered);
-        },1000)
-    })
-}
+    const itemDoc = doc(db, "items", id);
+
+    getDoc(itemDoc)
+      .then((doc) => {
+        if (doc.exists()) {
+          resolve({ id: doc.id, ...doc.data() });
+        } else {
+          resolve(null);
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+export const getProducts = (categoryId) => {
+    return new Promise((resolve, reject) => {
+      const db = getFirestore();
+  
+      const itemCollection = collection(db, "items");
+  
+      let q;
+      if (categoryId) {
+        q = query(itemCollection, where("categoryId", "==", categoryId));
+      } else {
+        q = query(itemCollection);
+      }
+  
+      getDocs(q)
+        .then((querySnapshot) => {
+          const products = querySnapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+          });
+          resolve(products);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  
+  export const createOrder = (orden) => {
+    const db = getFirestore();
+  
+    const ordersCollection = collection(db, "orders");
+  
+    return addDoc(ordersCollection, orden);
+  };

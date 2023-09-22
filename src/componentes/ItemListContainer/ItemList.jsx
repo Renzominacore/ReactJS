@@ -14,9 +14,10 @@ const ItemList = ({ items, isLoading }) => {
         {items.map((item) => (
           <li className="text-decoration-none" key={item.id}>
             <Link className="classPropia" to={`/item/${item.id}`}>
-              <h3 className="className">{item.name}</h3>
+              <h3 className="className">{item.title}</h3>
               <p className="classPrice">${item.price}</p>
-              <p className="classCategory">{item.category}</p>
+              <p className="classCategory">{item.categoryId}</p>
+              <p className="classCategory">Stock:{item.stock}</p>
               <hr />
             </Link>
           </li>
