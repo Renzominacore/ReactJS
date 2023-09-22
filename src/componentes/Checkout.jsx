@@ -44,6 +44,7 @@ const Checkout = () => {
           <>
             <div>
               <h4>Formulario de contacto</h4>
+
               {/* TODO: Formulario */}
             </div>
   

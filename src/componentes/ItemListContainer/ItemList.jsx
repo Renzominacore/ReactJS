@@ -10,15 +10,15 @@ const ItemList = ({ items, isLoading }) => {
     <div>
       <h1 className="text-center">Productos</h1>
 
-      <ul className="text-center classPropia">
+      <ul className="text-center productListStyle">
         {items.map((item) => (
           <li className="text-decoration-none" key={item.id}>
-            <Link className="classPropia" to={`/item/${item.id}`}>
-              <h3 className="className">{item.title}</h3>
-              <p className="classPrice">${item.price}</p>
-              <p className="classCategory">{item.categoryId}</p>
-              <p className="classCategory">Stock:{item.stock}</p>
-              <hr />
+            <Link className="productItem" to={`/item/${item.id}`}>
+              <h3 className="">{item.title}</h3>
+              <p className="">${item.price}</p>
+              <p className="">{item.categoryId}</p>
+              <p className="">Stock:{item.stock}</p>
+              
             </Link>
           </li>
         ))}
