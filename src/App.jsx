@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import CartProvider from "../context/CartProvider";
+import CartProvider from "./context/CartProvider";
 import NavBar from "./componentes/NavBar/NavBar"
 import ItemListContainer from "./componentes/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from "./componentes/ItemDetailContainer/ItemDetailContainer"

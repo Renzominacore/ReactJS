@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import CartContext from "../../context/CartContext";
+import CartContext from "../context/CartContext";
 import { serverTimestamp } from "firebase/firestore";
-import {getCartTotal, mapCartToOrderItems} from "../../utils"
+import {getCartTotal, mapCartToOrderItems} from "../utils"
 import { createOrder } from "../services";
 
 
@@ -25,11 +25,7 @@ const Checkout = () => {
     }
     const handleCheckout = () => {
       const order = {
-        buyer: {
-          name: "Renzo",
-          phone: "23495861",
-          email: "RenzoMinacore@gmail.com",
-        },
+        buyer: user,
         items: mapCartToOrderItems(cart),
         total,
         date: serverTimestamp(),
@@ -72,6 +68,7 @@ const Checkout = () => {
                   <label className="form-label">Repita su Correo Electronico</label>
                   <input className="form-control" type="email" placeholder="consultas@hotmail.com" name="email" onChange={((e)=>setValidateEmail(e.target.value))}/>
                 </div>
+                
               </form>
               
             </div>
@@ -93,7 +90,7 @@ const Checkout = () => {
   
             <p>Total de la compra: {total}</p>
             
-            <button type="submit" onClick={handleCheckout}>Finalizar compra</button>
+            <button type="submit" disabled={user.email !==validateEmail} onClick={handleCheckout}>Finalizar compra</button>
             {isLoading && <p>Procesando compra, no cierre esta pagina</p>}
           </>
         )}
